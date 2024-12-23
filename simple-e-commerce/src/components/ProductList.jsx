@@ -11,9 +11,11 @@ const ProductList = () => {
   const getProducts = async () => {
     setIsLoading(true);
     const response = await fetchProducts();
-    console.log(response);
+    console.log("RESPONSEEE:", response);
+    console.log("RESPONSE-OBJECT:", response.data.response.responseObject);
     setTimeout(() => {
-      setProducts(response.data) // set state, save data to state
+      setProducts(response.data.response.responseObject); // Update state with the product list
+      //setProducts(response.data) // set state, save data to state
       setIsLoading(false);
     }, 500);
   }
@@ -41,7 +43,7 @@ const ProductList = () => {
               return (
                 <ProductCard
                   product={product}
-                  name="patika" key={product.id}
+                  name="patika" key={product._id} //id
                   handleRemove={handleRemove}
                 />
               )
